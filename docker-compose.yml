@@ -1,0 +1,42 @@
+services:
+  web:
+    container_name: ${WEB_CONTAINER_NAME}
+    image: odoo:19
+    ports:
+      - ${WEB_HOST_PORT}:8069
+      - ${WEB_HOST_PORT_LONGPOLL}:8072
+    env_file:
+      - .env
+    environment:
+      - HOST=${POSTGRES_HOST}
+      - USER=${POSTGRES_USER}
+      - PASSWORD=${POSTGRES_PASSWORD}
+    volumes:
+      - ./config:/etc/odoo
+      - ./addons:/mnt/extra-addons
+      - odoo-web-volume:/var/lib/odoo
+    networks:
+      - odoo-network
+
+  db:
+    image: postgres:17
+    restart: unless-stopped
+    ports:
+      - ${DB_HOST_PORT}:5432
+    env_file:
+      - .env
+    environment:
+      - POSTGRES_DB=postgres
+    volumes:
+      - odoo-db-volume:/var/lib/postgresql/data
+    networks:
+      - odoo-network
+
+networks:
+  odoo-network:
+    name: ${DOCKER_NETWORK_NAME}
+    external: true
+
+volumes:
+  odoo-web-volume:
+  odoo-db-volume:

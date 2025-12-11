@@ -1,0 +1,24 @@
+# Symlinks odoo source code
+addons/odoo
+
+# Config files
+config/*
+!config/odoo.conf.example
+!config/README.md
+.env
+
+# Python
+__pycache__
+
+# Mac files
+.DS_Store
+
+# VS Code
+.vscode/settings.json
+!.vscode/extensions.json
+
+/certs
+
+# logs
+/addons/logs/*
+!addons/logs/.gitignore

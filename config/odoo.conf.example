@@ -1,0 +1,12 @@
+[options]
+admin_passwd = 
+
+addons_path = /mnt/extra-addons
+
+list_db = False
+db_name = 
+
+db_host = 
+db_port = 5432
+db_user = odoo
+db_password = 
