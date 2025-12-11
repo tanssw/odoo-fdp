@@ -35,7 +35,7 @@ services:
 networks:
   odoo-network:
     name: ${DOCKER_NETWORK_NAME}
-    external: true
+    external: ${DOCKER_NETWORK_EXTERNAL}
 
 volumes:
   odoo-web-volume:
